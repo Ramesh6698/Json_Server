@@ -1,0 +1,49 @@
+body {
+  background-color: #333;
+  color: black;
+}
+
+.App {
+  text-align: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fff3f3;
+}
+
+h2 {
+  color: aliceblue;
+}
+.btn {
+  margin-left: 5px;
+}
+
+.btn btn-danger {
+  margin-left: 50%;
+}
+ul {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+li {
+  background: white;
+  border-radius: 5px;
+  /* padding: 10px; */
+}
+ul li {
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  margin: 20px;
+}
+
+input {
+  border-radius: 5px;
+  width: 20%;
+  height: 50px;
+}
+
+.task {
+  background: blue;
+}
