@@ -1,6 +1,8 @@
 body {
-  background-color: #333;
-  color: black;
+  height: 100vh;
+  overflow: scroll;
+  background-color: #fff3f3;
+
 }
 
 .App {
@@ -46,4 +48,24 @@ input {
 
 .task {
   background: blue;
+}
+
+.flex-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card1 {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.text-wrapper {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: royalblue;
+  margin-right: 70px;
 }

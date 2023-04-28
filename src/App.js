@@ -40,23 +40,21 @@ const App = () => {
         </button>
       </div>
 
-      <div>
-        <ul>
-          {inputArr.map((val, ind) => {
-            return (
-              <li key={ind}>
-                {val}{" "}
-                <button
-                  className="btn btn-danger"
-                  onClick={() => DeleteItem(ind)}
-                >
-                  {" "}
-                  Delete
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+      <div className="flex-wrapper">
+        {inputArr.map((val, ind) => {
+          return (
+            <div className="card1" key={ind}>
+              <div className="text-wrapper">{val} </div>
+              <button
+                className="btn btn-danger"
+                onClick={() => DeleteItem(ind)}
+              >
+                {" "}
+                Delete
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
