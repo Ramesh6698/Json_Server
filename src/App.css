@@ -1,70 +1,63 @@
-*{
-    margin: 0px;
-    padding: 0px;
+* {
+  margin: 0px;
+  padding: 0px;
 }
-body{
-    background-color: rgb(243, 230, 230);
+body {
+  max-height: 100vh;
+  overflow: scroll;
 }
 
-.social-media-icons{
-    font-size: 2rem;
-    margin-left: 85%;
+.social-media-icons {
+  font-size: 2rem;
+  text-align: right;
 }
-.pic{
-    width: 170px;
-    height: 170px;
-    border-radius: 90px;
-    margin-left: 16%;
-}
-.profile{
-    display: flex;
-    justify-content: space-around;
-    margin: 18px 0px;
-    margin-bottom:8% ;
-}
-.tittle{
-    padding-right: 600px;
-}
-.Paragrhap,h3{
-    margin-left: 20%;
 
+.social-media-icons,
+a {
+  text-decoration: none;
+  margin-right: 10px;
 }
-p{
-    margin-left: 20%;
+.pic {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile {
+  margin: 10px 0 5%;
+  display: flex;
+}
+.profile-wrapper {
+  letter-spacing: 0.5px;
+  margin-left: 40px;
+}
 
-}
-.Paragrhap{
-    margin-top: 2%;
-}
-h5{
-    margin-left: 20%;
-
-}
-.card{
-    margin-bottom: 50%;
-}
-.card{
-    display: flex;
-    flex: 1 1 auto;
+.card {
+  display: flex;
+  flex: 1 1 auto;
 }
 .card-horizontal {
-    display: flex;
-    flex: 1 1 auto;
-}
-.row{
-    padding-left: 19%;
-}
-.post{
-    display: flex;
-    justify-content: space-between;
-    width: 35%;
+  display: flex;
+  flex: 1 1 auto;
 }
 
-.box{
-    padding-top: 8%;
+.post {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.post span {
+  margin-right: 10px;
+}
+.box {
+  display: flex;
 }
 
-small{
-    font-size: 90%;
-
+.box,
+button {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+small {
+  font-size: 15px;
 }
