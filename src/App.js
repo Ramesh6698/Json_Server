@@ -57,7 +57,7 @@ function App() {
               setshowForm(!showForm); 
             }}
           >
-             {showForm? "Show Task Bar" :"Hide Task Bar"}
+             {showForm? "Hide Task Bar" : "Show Task Bar"}
           </button>
 
 
