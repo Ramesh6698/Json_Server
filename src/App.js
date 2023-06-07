@@ -1,154 +1,131 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DogImage from "./Dog";
 import "./App.css";
-import Footer from "./Footer";
 
 function App() {
   const [data, setData] = useState([]);
-  const [showForm, setshowForm] = useState(true);
   const submitForm = (e) => {
     e.preventDefault();
 
-    const task = e.target[0].value;
-    const date = e.target[1].value;
-    const taskData = [...data, { task: task, date: date }];
-
-    localStorage.setItem("taskValue", JSON.stringify(taskData));
+    const category = e.target[0].value;
+    const title = e.target[1].value;
+    const author = e.target[2].value;
+    const taskData = [
+      ...data,
+      {
+        category: category,
+        title: title,
+        author: author,
+        id: new Date().getUTCMilliseconds(),
+      },
+    ];
+    console.log("taskData", taskData);
     setData(taskData);
     document.getElementById("create-task-form").reset();
   };
 
-  const remove = (item) => {
-    const task = data.filter(
-      (val) => val.task !== item.task && val.date !== item.date
-    );
-    setData(task);
-
-    localStorage.setItem("taskValue", JSON.stringify(task));
+  const handleRemove = (id) => {
+    setData((prev) => prev.filter((i) => i.id != id));
   };
-
-  useEffect(() => {
-    if (localStorage.getItem("taskValue")?.length) {
-      setData(JSON.parse(localStorage.getItem("taskValue")));
-    }
-  }, []);
-
   return (
-    <div className="App">
-      <div class="container">
+    <div>
+      <nav>
         <div>
-          <div style={{ display: "flex" }}>
-            <DogImage></DogImage>
-            <h1>TASK TRACKER</h1>
-          </div>
-          <button
-            type="button"
-            class="btn btn-primary"
-            style={{
-              background: "rgb(30, 89, 89)",
-              color: "white",
-              textAlign: "center",
-              border: "none",
-              marginTop: "1.2rem",
-              width: "100%",
-            }}
-            onClick={() => {
-              setshowForm(!showForm); 
-            }}
-          >
-             {showForm? "Hide Task Bar" : "Show Task Bar"}
-          </button>
-
-
-          {showForm && (
-            <div>
-              <form
-                class=" d-flex justify-content-center flex-column"
-                onSubmit={submitForm}
-                id="create-task-form"
-              >
-                <div class="mb-1">
-                  <label class="form-label" for="formBasicEmail">
-                    Task
-                  </label>
-
-                  <input
-                    placeholder="Enter task"
-                    required="true"
-                    type="text"
-                    id="formBasicEmail"
-                    class="form-control"
-                  />
-                </div>
-                <div class="mb-1 ">
-                  <label class="form-label" for="formBasicPassword">
-                    Date
-                  </label>
-
-                  <input
-                    required="true"
-                    type="datetime-local"
-                    id="formBasicPassword"
-                    class="text-muted  form-control"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  class="m-auto btn btn- btn-lg"
-                  style={{
-                    backgroundColor: "rgb(163, 163, 72)",
-                    color: "white",
-                    width: "30%",
-                    textAlign: "center",
-                  }}
-                >
-                  Save
-                </button>
-              </form>
-            </div>
-          )}
-
-          {data.map((item, key) => {
-            return (
-              <div key={key}>
-                <div class="tasklist mt-2 d-flex justify-content-between p-2 rounded-2">
+          <h1>Bookstore CMS</h1>
+        </div>
+        <a href="/" aria-current="page">
+          BOOKS
+        </a>
+        <a href="/categories">CATEGORIES</a>
+      </nav>
+      <div className="container">
+        <ul>
+          {data.map((i, n) => (
+            <li key={n}>
+              <div className="card">
+                <div className="flex-wraper">
                   <div>
-                    <h4>{item.task}</h4>
-                    <p>{item.date}</p>
+                    <div className="top">
+                      <b>{i.category} </b>
+                      <div className="titles">{i.title}</div>
+                      <div className="author">{i.author}</div>
+                    </div>
+                    <div class="myBtn">
+                      <p class="comment">Comments</p>
+                      <p class="removeBtn" onClick={() => handleRemove(i.id)}>
+                        Remove Book
+                      </p>
+                      <p class="edit">Edit</p>
+                    </div>
                   </div>
-                  <div
-                    class="ti d-flex align-items-center"
-                    onClick={() => remove(item)}
-                  >
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      stroke-width="0"
-                      version="1.2"
-                      baseProfile="tiny"
-                      viewBox="0 0 24 24"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                      style={{
-                        color: "rgb(30, 89, 89)",
-                        cursor: "pointer",
-                        marginRight: "2px",
-                        fontSize: "3rem",
-                        boxShadow: "rgba(30, 10, 90, 0.95) 2px 2px 2px 2px",
-                      }}
-                    >
-                      <path d="M12 4c-4.419 0-8 3.582-8 8s3.581 8 8 8 8-3.582 8-8-3.581-8-8-8zm3.707 10.293c.391.391.391 1.023 0 1.414-.195.195-.451.293-.707.293s-.512-.098-.707-.293l-2.293-2.293-2.293 2.293c-.195.195-.451.293-.707.293s-.512-.098-.707-.293c-.391-.391-.391-1.023 0-1.414l2.293-2.293-2.293-2.293c-.391-.391-.391-1.023 0-1.414s1.023-.391 1.414 0l2.293 2.293 2.293-2.293c.391-.391 1.023-.391 1.414 0s.391 1.023 0 1.414l-2.293 2.293 2.293 2.293z"></path>
-                    </svg>
+                  <div className="flex">
+                    <div className="flex-center">
+                      <div class="circular-progress">
+                        <div role="progressbar"></div>
+                      </div>
+
+                      <div className="progress-stat">
+                        <p class="percent-complete">25%</p>
+                        <p class="completed">Completed</p>
+                      </div>
+                    </div>
+
+                    <div class="current-page-container">
+                      <div>
+                        <p class="current-page-label">CURRENT PAGE</p>
+                        <p class="current-page">page 11</p>
+                      </div>
+                      <button class="btn btn-primary" type="button">
+                        UPDATE PROGRESS
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </li>
+          ))}
+        </ul>
+        <div className="title"> ADD NEW BOOK</div>
+        <form
+          class=" d-flex justify-content-center flex-column"
+          onSubmit={submitForm}
+          id="create-task-form"
+        >
+          <div className="input-wrapper">
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Large"
+              aria-describedby="inputGroup-sizing-sm"
+              placeholder="Category"
+              name="category"
+              required
+            />
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Large"
+              aria-describedby="inputGroup-sizing-sm"
+              placeholder="Book Title"
+              name="title"
+              required
+            />
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Large"
+              aria-describedby="inputGroup-sizing-sm"
+              placeholder="Author"
+              name="author"
+              required
+            />
+
+            <button class="btn btn-primary submit" type="submit">
+              Add book
+            </button>
+          </div>
+        </form>
       </div>
-      <Footer></Footer>
     </div>
   );
 }
